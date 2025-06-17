@@ -27,3 +27,4 @@ well did not expect i would complete them all in a day well done with them now s
 - Develop a single-page React application with a home page and an about page using React Router for navigation.
 
 well some look useless well they would be some buffer stuff once i am done with these i should be warmed up enough to start lifiting angular correspoding application.... well how are they related ? just flexing my fingers and trying to improve my mental capacity not directly linked but its the same arm different dumbles. let me get rid of these tasks i will get back.
+well one more question remains i guess so mostly tommorow i will actually be downloading angular and testing out stuff with it well warmed up senses so been a great day..!
