@@ -17,4 +17,13 @@ well i thought if i am either ways going to use html,javascript and nodejs (obiv
 - Develop a Node.js application that securely manages database credentials using environment variables loaded from a ‘.env‘ file.
 
 ** first let me get these guys done before i actually write up the next six that i want to do ... **
-  
+
+well did not expect i would complete them all in a day well done with them now so hmm that served like a major bursh up for me now in the second cycle how about we head a bit more backend kind of thingi either ways angular is going to take the place of my new front end well hmm i will go with reachjs which i love and some more nodejs well these are the next set of questions that i will do
+- Design and implement a REST API using Node.js and Express to manage a collection of books (CRUD operations).
+- Develop a full-stack MERN application that performs all CRUD operations on a data collection stored in MongoDB.
+- Build a REST API using Express and MongoDB for user registration and login,implementing secure authentication mechanisms.
+- Create a React application that manages a list of items, allowing users to add and remove items using state.
+- Build a data-driven React application that fetches data from an external API and displays it for the user.
+- Develop a single-page React application with a home page and an about page using React Router for navigation.
+
+well some look useless well they would be some buffer stuff once i am done with these i should be warmed up enough to start lifiting angular correspoding application.... well how are they related ? just flexing my fingers and trying to improve my mental capacity not directly linked but its the same arm different dumbles. let me get rid of these tasks i will get back.
