@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Practicing</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="font-sans">
+        <header class="h-[50px] border-2 flex items-center justify-between px-6 bg-gray-100">
+            <div class="text-xl font-semibold">
+                Lokadithya.M
+            </div>
+            <nav class="flex gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-blue-500">Home</a>
+                <a href="#" class="hover:text-blue-500">About</a>
+                <a href="#" class="hover:text-blue-500">Random</a>
+            </nav>
+        </header>
+
+        <main class="h-[800px] border-2 flex flex-col items-center justify-center bg-white">
+            <div class="border-2 flex gap-2 p-2 h-[500px] w-[1000px] items-center">
+                <div class="border-2 flex flex-col h-full w-1/2 gap-2">
+                    <label class="font-bold">Product1:</label>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-green-200 rounded-xl" onclick="onClick1()">add</button>
+                    <label class="font-bold">Product2:</label>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-green-200 rounded-xl" onclick="onClick2()">add</button>
+                    <label class="font-bold">Product3:</label>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-green-200 rounded-xl" onclick="onClick3()">add</button>
+                </div>
+                <div class="border-2 flex h-full w-1/2">
+                    <div id="summary" class="text-xl font-mono text-gray-700">
+                        <!-- summary will  be coming here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="h-[70px] border-2 flex items-center justify-center bg-gray-100">
+            <p class="text-sm text-gray-600">© 2025 Lokadithya</p>
+        </footer>
+
+        <script>
+            var product1=0;
+            var product2=0;
+            var product3=0;
+            var total = 0;
+
+            function onClick1(){
+                product1+=1;
+                calculator();
+            }
+
+            function onClick2(){
+                product2+=1;
+                calculator();
+            }
+
+            function onClick3(){
+                product3+=1;
+                calculator();
+            }
+
+            function onremove1(){
+                if(product1!=0)
+                product1-=1;
+                calculator();
+            }
+
+            function onremove2(){
+                if(product2!=0)
+                product2-=1;
+                calculator();
+            }
+
+            function onremove3(){
+                if(product3!=0)
+                product3-=1;
+                calculator();
+            }
+
+            function calculator(){
+                total = product1*10 + product2*20+product3*30;
+                console.log(total);
+                const summary = document.getElementById("summary");
+                summary.innerHTML = `
+                    <p><strong>Product1</strong> ${product1} x ₹10 = ₹${product1*10}</p>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-red-200 rounded-xl" onclick="onremove1()">remove</button>
+                    <p><strong>Product2</strong> ${product2} x ₹20 = ₹${product2*20}</p>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-red-200 rounded-xl" onclick="onremove2()">remove</button>
+                    <p><strong>Product3</strong> ${product3} x ₹30 = ₹${product3*30}</p>
+                    <button class="h-[40px] w-[80px] text-xl font-sans bg-gray-100 hover:bg-red-200 rounded-xl" onclick="onremove3()">remove</button>
+                    <hr class="my-2">
+                    <p><strong>Total:</strong>₹${total}</p>
+                `;
+            }
+
+        </script>
+    </body>
+</html>
