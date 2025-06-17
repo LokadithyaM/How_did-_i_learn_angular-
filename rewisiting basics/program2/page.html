@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>Practice2</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <header class="h-[70px] border-2 flex items-center justify-between px-8 bg-gray-100">
+            <div class="text-xl font-bold">Lokadithya Matti</div>
+            <nav class="flex gap-6 text-sm font-medium">
+                <a href="#" class="hover:text-blue-500">About</a>
+                <a href="#" class="hover:text-blue-500">Home</a>
+                <a href="#" class="hover:text-blue-500">Random</a>
+            </nav>
+        </header>
+        <main class="h-[850px] border-2 flex-col items-center justify-center">
+            <div class="font-medium flex-col justify-center items-center"> 
+                <label> Article by lokadithya </label>
+                <div class="font-bold">
+                    year : 2405
+                </div>
+                <p class="text-sm text-gray-600">
+                    In an era where rapid innovation and new technologies often steal the spotlight, it is worthwhile to pause and reflect on the enduring strength of tradition. Our ancestors built the foundations of society through practices steeped in respect, patience, and community. These values, though ancient, continue to guide us even today.
+                    The wisdom passed down through generations teaches us that progress need not come at the expense of heritage. In fact, the true advancement lies in harmonizing the new with the old. This balance allows us to navigate the complexities of modern life while honoring the lessons that time has taught us.
+                    As we journey forward into the future, let us remember to cherish the customs and principles that have shaped our identity. It is through this respectful preservation that we find stability, meaning, and purpose.
+                </p>
+                <a href="#" class="hover:text-blue-500">.... read more.</a>
+            </div>
+
+            <div class="font-sans border-2 flex-col items-center justify-center">
+                <label class="font-bold">@Comments</label>
+                <ul id="commentList">
+                    <!-- submitted comments will appear here -->
+                </ul>
+                <label class="font-bold">@comment</label>
+                <form id="commentForm" class="border-2 h-[280px] w-[800px] flex flex-col gap-4 p-4">
+                    <div class="flex flex-col">
+                        <label>Name:</label>
+                        <input class="border-2 border-gray-200 w-[200px] mb-2 px-2 py-1" placeholder="Enter your name" required />
+                    </div>
+                    <div class="flex flex-col">
+                        <label>Comment:</label>
+                        <input class="border-2 border-gray-200 w-[700px] px-2 py-1" placeholder="Your thoughts" required/>
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="h-[60px] w-[90px] rounded-xl bg-black text-gray-600 hover:bg-green-200 mt-2">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+        <footer class="h-[50px] border-2 flex items-center justify-between px-8 bg-gray-100">
+            @All rights reserved
+        </footer>
+        <script>
+            document.getElementById("commentForm").addEventListener("submit",function(e){
+                e.preventDefault();
+
+                const nameInput = e.target.querySelector("input[placeholder='Enter your name']");
+                const commentInput = e.target.querySelector("input[placeholder='Your thoughts']");
+
+                const name = nameInput.value.trim();
+                const comment = commentInput.value.trim();
+
+                if(name===""||comment===""){
+                    alert("Enter details neatly before you can submit")
+                    return;
+                }
+
+                const commentList = document.getElementById("commentList");
+                const newComment = document.createElement("li");
+
+                newComment.className = "mt-2 text-sm text-gray-700";
+                newComment.innerHTML = `<strong>${name}</strong>: ${comment}`;
+
+                commentList.appendChild(newComment);
+
+                nameInput.value="";
+                commentInput.value="";
+            })
+        </script>
+    </body>
+</html>
