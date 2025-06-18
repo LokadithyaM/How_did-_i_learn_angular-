@@ -28,3 +28,6 @@ well did not expect i would complete them all in a day well done with them now s
 
 well some look useless well they would be some buffer stuff once i am done with these i should be warmed up enough to start lifiting angular correspoding application.... well how are they related ? just flexing my fingers and trying to improve my mental capacity not directly linked but its the same arm different dumbles. let me get rid of these tasks i will get back.
 well one more question remains i guess so mostly tommorow i will actually be downloading angular and testing out stuff with it well warmed up senses so been a great day..!
+
+# DAY 3
+well awaited day three is here hmm angular angular let me just go try getting out the dependencies and stuff... The officaial document had something stating get started with you firrst angulare app so less goooo!
