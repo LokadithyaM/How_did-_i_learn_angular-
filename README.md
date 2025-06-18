@@ -31,3 +31,5 @@ well one more question remains i guess so mostly tommorow i will actually be dow
 
 # DAY 3
 well awaited day three is here hmm angular angular let me just go try getting out the dependencies and stuff... The officaial document had something stating get started with you firrst angulare app so less goooo!
+# DAY 4
+yesterday did end up going down the drain in comparision to remaining days but not today !! let see what angular has in store for me....
