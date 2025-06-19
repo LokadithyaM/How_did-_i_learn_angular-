@@ -40,4 +40,11 @@ yesterday did end up going down the drain in comparision to remaining days but n
 
 
 
-still going to progress well set up and till now time taken was ample 2 hours 30 minutes
+still going to progress well set up and till now time taken was ample 2 hours 30 minutes well after spending wopping a complete of 4 hours just done with basics in angular !! 
+
+
+![image](https://github.com/user-attachments/assets/bbe0e4fa-413b-49a0-8aa4-c33259da1cfe)
+
+
+
+well now i think i will switch gears and get started with the assginment that has been provided !! and rest is up to practice on how many days that i spend on it hmm it should become gradually smootehr so either ways **done with basics**
