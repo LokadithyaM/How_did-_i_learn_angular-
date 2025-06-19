@@ -27,9 +27,11 @@ well did not expect i would complete them all in a day well done with them now s
 - Develop a single-page React application with a home page and an about page using React Router for navigation.
 
 well some look useless well they would be some buffer stuff once i am done with these i should be warmed up enough to start lifiting angular correspoding application.... well how are they related ? just flexing my fingers and trying to improve my mental capacity not directly linked but its the same arm different dumbles. let me get rid of these tasks i will get back.
-well one more question remains i guess so mostly tommorow i will actually be downloading angular and testing out stuff with it well warmed up senses so been a great day..!
 
+well one more question remains i guess so mostly tommorow i will actually be downloading angular and testing out stuff with it well warmed up senses so been a great day..! 
 # DAY 3
 well awaited day three is here hmm angular angular let me just go try getting out the dependencies and stuff... The officaial document had something stating get started with you firrst angulare app so less goooo!
 # DAY 4
-yesterday did end up going down the drain in comparision to remaining days but not today !! let see what angular has in store for me....
+yesterday did end up going down the drain in comparision to remaining days but not today !! let see what angular has in store for me....okay just done halfway through this docss
+![image](https://github.com/user-attachments/assets/efd44de8-de5a-4942-ad1d-095dc3f80fb1) 
+still going to progress well set up and till now time taken was ample 2 hours 30 minutes
