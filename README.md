@@ -46,12 +46,12 @@ still going to progress well set up and till now time taken was ample 2 hours 30
 ![image](https://github.com/user-attachments/assets/bbe0e4fa-413b-49a0-8aa4-c33259da1cfe)
 
 
+well now i think i will switch gears and get started with the assginment that has been provided !! and rest is up to practice on how many days that i spend on it hmm it should become gradually smootehr so either ways **done with basics**
+
+
+
 I have decided to proceed with MongoDB as the database for the assignment, given its flexibility and alignment with traditional backend development practices. The project involves building a team WhatsApp–style portal for helpers, focusing primarily on Angular for the frontend.
 
 My initial design will use a map structure with unique identifiers for each helper, accompanied by corresponding models for clean data management. Since the project requirements do not emphasize real-time data synchronization or caching, I will keep the backend simple and straightforward without implementing complex caching or real-time features at this stage.
 
 The plan is to start with a simple, robust structure that satisfies the core requirements and then consider optimizations if time permits. This approach balances clarity and maintainability, ensuring a strong foundation before advancing further.
-
-
-
-well now i think i will switch gears and get started with the assginment that has been provided !! and rest is up to practice on how many days that i spend on it hmm it should become gradually smootehr so either ways **done with basics**
