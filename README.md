@@ -55,3 +55,6 @@ I have decided to proceed with MongoDB as the database for the assignment, given
 My initial design will use a map structure with unique identifiers for each helper, accompanied by corresponding models for clean data management. Since the project requirements do not emphasize real-time data synchronization or caching, I will keep the backend simple and straightforward without implementing complex caching or real-time features at this stage.
 
 The plan is to start with a simple, robust structure that satisfies the core requirements and then consider optimizations if time permits. This approach balances clarity and maintainability, ensuring a strong foundation before advancing further.
+
+# DAY 5
+getting started with it just installed all the dependencies pushing them in sec 
