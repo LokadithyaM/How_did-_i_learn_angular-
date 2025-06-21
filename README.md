@@ -58,3 +58,5 @@ The plan is to start with a simple, robust structure that satisfies the core req
 
 # DAY 5
 getting started with it just installed all the dependencies pushing them in sec 
+# Day 6
+its getting extremely screwed up i am slipping up into old habits !!! well its pathetic amount of work done yesterday i don't want to repeat it today so lets get started with what i can and see if it makes a difference
