@@ -60,3 +60,5 @@ The plan is to start with a simple, robust structure that satisfies the core req
 getting started with it just installed all the dependencies pushing them in sec 
 # Day 6
 its getting extremely screwed up i am slipping up into old habits !!! well its pathetic amount of work done yesterday i don't want to repeat it today so lets get started with what i can and see if it makes a difference
+alright just set up basic node js server with some backend models in (employee model with all the reqired paramters observed from teh video provided)
+have to figure out how i am going to store files well fire base would have figured otu something but i chose mongo db so he he life could be a dream ta da ada okay thats the recording for today.
