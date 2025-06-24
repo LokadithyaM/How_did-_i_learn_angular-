@@ -65,3 +65,6 @@ have to figure out how i am going to store files well fire base would have figur
 
 # DAY 7
 just realized i had to set the server up in type script (-_-) well managable will do that and then yeah just have finished setting a  basic exoskeleton now i will start figuring out about components and stuff lets goo progress!!
+
+# DAY 8
+fixed type script i dont' think i will be making any further changes to the server much for now navigating exams so will get scarce but yeah....
