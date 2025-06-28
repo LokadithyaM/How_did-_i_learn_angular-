@@ -68,3 +68,6 @@ just realized i had to set the server up in type script (-_-) well managable wil
 
 # DAY 8
 fixed type script i dont' think i will be making any further changes to the server much for now navigating exams so will get scarce but yeah....
+
+# DAY 9
+struggling with this ui part well apart from that just leanrt how to connect navigation bar to main content and side bar one feature got closer to the final assesment to completeiion ha hah ...
