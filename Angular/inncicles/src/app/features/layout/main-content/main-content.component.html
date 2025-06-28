@@ -1,0 +1,88 @@
+
+<section class="main-content">
+  <div [hidden]="currentNavItem !== 'AddEmployee'">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form_container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mobile</mat-label>
+        <input matInput formControlName="mobile" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Organization</mat-label>
+        <mat-select formControlName="organization" required>
+          <mat-option value="OrgA">OrgA</mat-option>
+          <mat-option value="OrgB">OrgB</mat-option>
+          <mat-option value="OrgC">OrgC</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Vehicle Type</mat-label>
+        <mat-select formControlName="vehicleType" required>
+          <mat-option value="Two Wheeler">Two Wheeler</mat-option>
+          <mat-option value="Four Wheeler">Four Wheeler</mat-option>
+          <mat-option value="None">None</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Languages</mat-label>
+        <mat-select formControlName="languages" multiple>
+          <mat-option *ngFor="let lang of availableLanguages" [value]="lang">
+            {{ lang }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Services</mat-label>
+        <mat-select formControlName="services" multiple>
+          <mat-option *ngFor="let service of availableServices" [value]="service">
+            {{ service }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>KYC Documents</mat-label>
+        <mat-select formControlName="kycDocs" multiple>
+          <mat-option *ngFor="let doc of availableKycDocs" [value]="doc">
+            {{ doc }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Additional Documents</mat-label>
+        <mat-select formControlName="additionalDocs" multiple>
+          <mat-option *ngFor="let doc of availableAdditionalDocs" [value]="doc">
+            {{ doc }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Profile Photo URL</mat-label>
+        <input matInput formControlName="profilePhoto" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div [hidden]="currentNavItem !== 'Logout'">Employees Sidebar Content</div>
+
+  <div *ngIf="!currentNavItem">Please select an option from the navbar</div>
+</section>

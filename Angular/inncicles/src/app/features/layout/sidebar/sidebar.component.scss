@@ -1,0 +1,19 @@
+.sidebar {
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 1rem;
+
+    a {
+      text-decoration: none;
+      color: #2d3436;
+
+      &:hover {
+        color: #0984e3;
+      }
+    }
+  }
+}

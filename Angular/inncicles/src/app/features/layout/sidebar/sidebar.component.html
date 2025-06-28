@@ -1,0 +1,5 @@
+<aside class="sidebar">
+<div *ngIf="currentNavItem === 'AddEmployee'">Dashboard Sidebar Content</div>
+<div *ngIf="currentNavItem === 'Logout'">Employees Sidebar Content</div>
+<div *ngIf="!currentNavItem">Please select an option from the navbar</div>
+</aside>

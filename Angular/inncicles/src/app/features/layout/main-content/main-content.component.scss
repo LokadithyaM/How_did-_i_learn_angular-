@@ -1,0 +1,154 @@
+/* You must import the Angular Material theming functions and mixins */
+@use '@angular/material' as mat;
+
+/* Include the core styles for Angular Material. This includes typography and density. */
+@include mat.core();
+
+/* Define a custom theme using Angular Material's theming system.
+   You can choose primary and accent colors from Material's palettes or define your own. */
+$my-primary: mat.define-palette(mat.$indigo-palette); // A common and appealing primary blue
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400); // A bright accent pink
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+  ),
+  typography: mat.define-typography-config(), // Use default Material typography
+  density: 0, // Default density
+));
+
+/* Apply the custom theme to all Angular Material components.
+   This is the critical line that makes Material components render correctly. */
+@include mat.all-component-themes($my-theme);
+
+/* Optional: Include Angular Material's built-in typography styles for the entire body */
+html, body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+body {
+  margin: 0;
+}
+
+
+/* --- YOUR CUSTOM FORM CSS STARTS HERE --- */
+
+.main-content {
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f7fa;
+}
+
+.employee-form_container {
+  width: 100%;
+  max-width: 650px;
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+mat-form-field {
+  display: block;
+  font-size: 1.05rem;
+}
+
+/* Specificity for Material's internal elements */
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #007bff !important; /* Your primary blue for the outline */
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline {
+  border-color: #007bff !important; /* Ensure the actual border color matches */
+}
+
+/* Override default browser focus and add a subtle box-shadow */
+input.mat-input-element:focus,
+mat-select:focus {
+  outline: none !important; /* Remove any remaining default outlines */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3) !important; /* A subtle, soft glow */
+  border-radius: 4px; /* Match input border radius */
+}
+
+/* Custom caret color */
+input.mat-input-element:focus {
+  caret-color: #007bff;
+}
+
+/* Adjust Material Ripple color on active elements */
+.mat-ripple.mat-ripple-unbounded {
+  background-color: rgba(0, 123, 255, 0.1) !important;
+}
+
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  letter-spacing: 0.5px;
+  margin-top: 1.5rem;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #a0cbf7;
+  transform: none;
+}
+
+button[type="submit"]:not(:disabled):hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+button[type="submit"]:not(:disabled):active {
+  transform: translateY(0);
+  background-color: #004085;
+}
+
+.main-content > div:last-child {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+  .employee-form_container {
+    padding: 1.5rem 1rem;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+}
