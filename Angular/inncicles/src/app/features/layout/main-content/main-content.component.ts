@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Employee } from '../../../core/services/item.service';
 
 @Component({
   selector: 'app-main-content',
@@ -26,6 +27,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class MainContentComponent implements OnInit, OnDestroy {
   currentNavItem: string | null = null;
+  selectedEmployee: Employee | null = null;
   private subscription!: Subscription;
 
   employeeForm: FormGroup;
@@ -35,6 +37,8 @@ export class MainContentComponent implements OnInit, OnDestroy {
   availableServices = ['Courier', 'Tech Support', 'Delivery'];
   availableKycDocs = ['Aadhar', 'PAN', 'Driving License'];
   availableAdditionalDocs = ['Degree Certificate', 'Work Permit'];
+  availableVehicleTypes = ['Bike', 'Car', 'Truck'];
+  availableOrganizations = ['Organization A', 'Organization B', 'Organization C'];
 
   constructor(
     private communicationService: CommunicationService,
@@ -55,17 +59,29 @@ export class MainContentComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() {
-    this.subscription = this.communicationService.navSelection$.subscribe(item => {
+  uploadedFiles: { [docType: string]: File | null } = {};
+
+
+private subscriptions = new Subscription();
+
+ngOnInit() {
+  this.subscriptions.add(
+    this.communicationService.navSelection$.subscribe(item => {
       this.currentNavItem = item;
       console.log('Current Nav Item:', item);
-    });
-  }
+    })
+  );
+
+  this.subscriptions.add(
+    this.communicationService.selectedEmployee$.subscribe(employee => {
+      this.selectedEmployee = employee;
+      console.log('selectedEmployee:', employee);
+    })
+  );
+}
 
   ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.subscriptions.unsubscribe();
   }
 
   onSubmit() {
@@ -75,4 +91,32 @@ export class MainContentComponent implements OnInit, OnDestroy {
       console.warn('Form is invalid');
     }
   }
+
+  onBack(){
+    this.currentNavItem = null; // Reset the current nav item
+    this.communicationService.selectNavItem(''); // Notify the service to reset the selection
+  }
+
+  selectedKycDocs: string[] = [];
+
+  onKycDocsChange(selectedDocs: string[]) {
+    this.selectedKycDocs = selectedDocs;
+    
+    // Clean up files for deselected docs
+    Object.keys(this.uploadedFiles).forEach(doc => {
+      if (!selectedDocs.includes(doc)) {
+        delete this.uploadedFiles[doc];
+      }
+    });
+  }
+
+
+  onFileSelected(event: Event, docType: string) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.uploadedFiles[docType] = input.files[0];
+    }
+  }
+
+
 }

@@ -1,4 +1,13 @@
 <nav class="navbar">
-  <a href="#" (click)="onNavItemClick('AddEmployee')">Add Employee</a>
-  <a href="#" (click)="onNavItemClick('Logout')">Logout</a>
+  <div class="navbar-header">
+    <button *ngIf="currentNavItem" class="back-button" type="button" (click)="onBack()">Back</button>
+    <button>sort</button>
+    <button>filter</button>
+    <input type="text" class="search-input" placeholder="Search..." />
+  </div>
+  <div class="navbar-spacer"></div> <!-- this is key -->
+  <div class="navbar-links">
+    <button class="back-button" type="button" (click)="onNavItemClick('AddEmployee')">+Add Employee</button>
+    <a href="#" (click)="onNavItemClick('Logout')">Logout</a>
+  </div>
 </nav>

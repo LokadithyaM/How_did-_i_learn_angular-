@@ -1,5 +1,16 @@
 <aside class="sidebar">
-<div *ngIf="currentNavItem === 'AddEmployee'">Dashboard Sidebar Content</div>
-<div *ngIf="currentNavItem === 'Logout'">Employees Sidebar Content</div>
-<div *ngIf="!currentNavItem">Please select an option from the navbar</div>
+  <div *ngIf="currentNavItem === 'AddEmployee'">Dashboard Sidebar Content</div>
+  <div *ngIf="currentNavItem === 'Logout'">Employees Sidebar Content</div>
+
+  <div *ngIf="!currentNavItem" class="whatsapp">
+    <div *ngFor="let item of items" class="item">
+      <div class="item-icon" (click)="selectEmployee(item)">
+        <img [src]="item.profilePhoto" alt="{{ item.fullName }}" class="profile-photo" />
+        <div class="item-texts">
+          <div class="item-name">{{ item.fullName }}</div>
+          <div class="item-role">{{ item.mobile }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </aside>

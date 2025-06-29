@@ -20,20 +20,17 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Organization</mat-label>
         <mat-select formControlName="organization" required>
-          <mat-option value="OrgA">OrgA</mat-option>
-          <mat-option value="OrgB">OrgB</mat-option>
-          <mat-option value="OrgC">OrgC</mat-option>
+          <mat-option *ngFor="let org of availableOrganizations" [value]="org">{{org}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Vehicle Type</mat-label>
         <mat-select formControlName="vehicleType" required>
-          <mat-option value="Two Wheeler">Two Wheeler</mat-option>
-          <mat-option value="Four Wheeler">Four Wheeler</mat-option>
-          <mat-option value="None">None</mat-option>
+          <mat-option *ngFor="let type of availableVehicleTypes" [value]="type">{{type}}</mat-option>
         </mat-select>
       </mat-form-field>
+
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Languages</mat-label>
@@ -55,12 +52,18 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>KYC Documents</mat-label>
-        <mat-select formControlName="kycDocs" multiple>
+        <mat-select formControlName="kycDocs" multiple (selectionChange)="onKycDocsChange($event.value)">
           <mat-option *ngFor="let doc of availableKycDocs" [value]="doc">
             {{ doc }}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <div *ngFor="let doc of selectedKycDocs">
+        <label>{{ doc }} File:</label>
+        <input type="file" (change)="onFileSelected($event, doc)" />
+      </div>
+
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Additional Documents</mat-label>
@@ -84,5 +87,38 @@
 
   <div [hidden]="currentNavItem !== 'Logout'">Employees Sidebar Content</div>
 
-  <div *ngIf="!currentNavItem">Please select an option from the navbar</div>
+  <div *ngIf="!currentNavItem">
+      <div *ngIf="selectedEmployee" class="employee-card">
+    <img [src]="selectedEmployee.profilePhoto" alt="{{ selectedEmployee.fullName }}" class="profile-photo" />
+    <h2>{{ selectedEmployee.fullName }}</h2>
+    <div class="field"><span class="label">Mobile:</span> {{ selectedEmployee.mobile }}</div>
+    <div class="field"><span class="label">Email:</span> {{ selectedEmployee.email }}</div>
+    <div class="field"><span class="label">Organization:</span> {{ selectedEmployee.organization }}</div>
+    <div class="field"><span class="label">Vehicle Type:</span> {{ selectedEmployee.vehicleType }}</div>
+    <div class="field">
+      <span class="label">Languages:</span>
+      <ul>
+        <li *ngFor="let lang of selectedEmployee.languages">{{ lang }}</li>
+      </ul>
+    </div>
+    <div class="field">
+      <span class="label">Services:</span>
+      <ul>
+        <li *ngFor="let service of selectedEmployee.services">{{ service }}</li>
+      </ul>
+    </div>
+    <div class="field">
+      <span class="label">KYC Documents:</span>
+      <ul>
+        <li *ngFor="let doc of selectedEmployee.kycDocs">{{ doc }}</li>
+      </ul>
+    </div>
+    <div class="field">
+      <span class="label">Additional Documents:</span>
+      <ul>
+        <li *ngFor="let doc of selectedEmployee.additionalDocs">{{ doc }}</li>
+      </ul>
+    </div>
+  </div>
+  </div>
 </section>
