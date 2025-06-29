@@ -71,3 +71,6 @@ fixed type script i dont' think i will be making any further changes to the serv
 
 # DAY 9
 struggling with this ui part well apart from that just leanrt how to connect navigation bar to main content and side bar one feature got closer to the final assesment to completeiion ha hah ...
+
+# DAY 10
+Implemented communication between sidebar and main content using a shared service to handle employee selection. Fixed click event binding issues to ensure proper updates of selected employee state. Subscribed to observables to keep UI in sync and created a detailed, styled employee info card for displaying all relevant employee details dynamically. well the main asked part is done and next big fish is to add data to mongo that is all that remains in primary pillars and from there on its just features adding on and ui editions less goo !!! well getting a hang of this angular its not that bad well the best part i liked about it is the dynamic updates that i am able to do unlike nextjs that pissess me of with stale data.
