@@ -104,10 +104,13 @@ ngOnInit() {
         console.log('Employee added successfully:', data);
         // Reset the form after successful submission
         this.employeeForm.reset();
-        this.uploadedFiles = {}; // Clear uploaded files
-        this.selectedKycDocs = []; // Clear selected KYC docs
-        this.currentNavItem = null; // Reset the current nav item
-        this.communicationService.selectNavItem(''); // Notify the service to reset the selection
+        this.uploadedFiles = {};
+        this.selectedKycDocs = []; 
+        this.currentNavItem = null;
+        this.selectedEmployee = null; // Reset selected employee
+
+        this.communicationService.addEmployeeToSubject(data);
+        this.communicationService.selectNavItem(''); 
       })
     } else {
       console.warn('Form is invalid');

@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   // method to select an employee from the sidebar
   selectEmployee(employee: Employee) {
-    alert('CLICKED: ' + employee.fullName);
+    // alert('CLICKED: ' + employee.fullName);
     console.log('Selected Employee sidebar:', employee);
     this.communicationService.selectEmployee(employee);
   }

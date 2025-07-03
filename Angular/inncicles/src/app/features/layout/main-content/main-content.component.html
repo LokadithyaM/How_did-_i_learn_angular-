@@ -89,6 +89,10 @@
 
   <div *ngIf="!currentNavItem">
       <div *ngIf="selectedEmployee" class="employee-card">
+        <div class="employee-card-header">
+              <div class="edit">Edit</div>
+              <div class="delete">Delete</div>
+        </div>
     <img [src]="selectedEmployee.profilePhoto" alt="{{ selectedEmployee.fullName }}" class="profile-photo" />
     <h2>{{ selectedEmployee.fullName }}</h2>
     <div class="field"><span class="label">Mobile:</span> {{ selectedEmployee.mobile }}</div>

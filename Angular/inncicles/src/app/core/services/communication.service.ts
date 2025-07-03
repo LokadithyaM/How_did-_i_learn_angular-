@@ -34,6 +34,12 @@ export class CommunicationService {
     });
   }
 
+  addEmployeeToSubject(newEmployee: Employee): void {
+    const current = this.employeesSubject.getValue();
+    this.employeesSubject.next([...current, newEmployee]);
+  }
+
+
   selectNavItem(item: string | null): void {
     this.navSelectionSubject.next(item);
   }
