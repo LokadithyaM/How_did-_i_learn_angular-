@@ -82,3 +82,4 @@ done with mongodb adding and retriving displayal now as things stand next in lin
 - file uploads and image uploads primarly have to be worked on mostly multer or some thingi
 - next in line are filters for added people
 - once these above four are done i will be switching gears to ui related aspects which is more of a rote work indeed.
+dynamicity done.
