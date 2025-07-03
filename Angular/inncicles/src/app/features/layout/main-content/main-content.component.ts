@@ -87,6 +87,28 @@ ngOnInit() {
   onSubmit() {
     if (this.employeeForm.valid) {
       console.log('Form Submitted:', this.employeeForm.value);
+      fetch("http://localhost:3000/routes/employee/add",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.employeeForm.value)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Employee added successfully:', data);
+        // Reset the form after successful submission
+        this.employeeForm.reset();
+        this.uploadedFiles = {}; // Clear uploaded files
+        this.selectedKycDocs = []; // Clear selected KYC docs
+        this.currentNavItem = null; // Reset the current nav item
+        this.communicationService.selectNavItem(''); // Notify the service to reset the selection
+      })
     } else {
       console.warn('Form is invalid');
     }

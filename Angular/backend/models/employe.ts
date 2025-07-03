@@ -21,7 +21,7 @@ const employeeSchema: Schema = new Schema<IEmployee>({
   },
   organization: {
     type: String,
-    enum: ['OrgA', 'OrgB', 'OrgC'],
+    enum: ['Organization A', 'Organization B', 'Organization C'],
     required: true,
   },
   languages: {
@@ -48,7 +48,7 @@ const employeeSchema: Schema = new Schema<IEmployee>({
   },
   vehicleType: {
     type: String,
-    enum: ['Two Wheeler', 'Four Wheeler', 'None'],
+    enum: ['Car', 'Bike', 'Truck', 'None'],
     required: true,
   },
   kycDocs: {
