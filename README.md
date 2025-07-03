@@ -74,3 +74,11 @@ struggling with this ui part well apart from that just leanrt how to connect nav
 
 # DAY 10
 Implemented communication between sidebar and main content using a shared service to handle employee selection. Fixed click event binding issues to ensure proper updates of selected employee state. Subscribed to observables to keep UI in sync and created a detailed, styled employee info card for displaying all relevant employee details dynamically. well the main asked part is done and next big fish is to add data to mongo that is all that remains in primary pillars and from there on its just features adding on and ui editions less goo !!! well getting a hang of this angular its not that bad well the best part i liked about it is the dynamic updates that i am able to do unlike nextjs that pissess me of with stale data.
+
+# DAY 11
+done with mongodb adding and retriving displayal now as things stand next in line to handle are 
+- dynamicity is not there i mean when fetched the page reload is not natural
+- orgnaization veihicle type have to be rendered from server side to maintain consistency across the application
+- file uploads and image uploads primarly have to be worked on mostly multer or some thingi
+- next in line are filters for added people
+- once these above four are done i will be switching gears to ui related aspects which is more of a rote work indeed.
