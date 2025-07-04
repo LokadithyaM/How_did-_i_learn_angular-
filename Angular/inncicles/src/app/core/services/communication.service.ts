@@ -9,6 +9,9 @@ export class CommunicationService {
   // BehaviorSubject to hold the employee list
   private employeesSubject = new BehaviorSubject<Employee[]>([]);
   employees$: Observable<Employee[]> = this.employeesSubject.asObservable();
+  private fullEmployeeList: Employee[] = [];
+
+  searchQuery: string = '';
 
   // Subject for navigation selection
   private navSelectionSubject = new BehaviorSubject<string | null>(null);
@@ -25,6 +28,7 @@ export class CommunicationService {
   private loadEmployees(): void {
     this.itemService.getEmployees().subscribe({
       next: (data) => {
+        this.fullEmployeeList = data;
         this.employeesSubject.next(data);
         console.log('Fetched items:', data);
       },
@@ -35,8 +39,26 @@ export class CommunicationService {
   }
 
   addEmployeeToSubject(newEmployee: Employee): void {
+     this.fullEmployeeList.push(newEmployee);
     const current = this.employeesSubject.getValue();
     this.employeesSubject.next([...current, newEmployee]);
+  }
+
+  searchEmployees(query: string): void {
+    const lowerQuery = query.toLowerCase().trim();
+
+    if (!lowerQuery) {
+      this.employeesSubject.next([...this.fullEmployeeList]);
+      return;
+    }
+
+    const filtered = this.fullEmployeeList.filter((employee) =>
+      employee.fullName.toLowerCase().includes(lowerQuery) ||
+      employee.email.toLowerCase().includes(lowerQuery) ||
+      employee.mobile.toLowerCase().includes(lowerQuery)
+    );
+
+    this.employeesSubject.next(filtered);
   }
 
 

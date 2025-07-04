@@ -44,27 +44,24 @@ body {
   border: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
-  padding: 16px;
-  width: 70%;
+  overflow-y: scroll;
+  // padding: 16px;
+  width: 100%;
 }
 
 .navigation {
   height: 56px;
   // display: flex;
   padding-left: 20px;
+  // margin-left: 20px;
   align-items: center;
-  width: 90%;
+  width: 100%;
   font-weight: 600;
   font-size: 18px;
   border-bottom: 1px solid #e0e0e0;
   background-color: #ffffff;
   border-radius: 12px 12px 0 0;
   overflow: hidden;
-}
-
-.navigation {
-  width: 100vw;
 }
 
 .title {

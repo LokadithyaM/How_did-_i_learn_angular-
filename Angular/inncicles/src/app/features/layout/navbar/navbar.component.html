@@ -3,7 +3,7 @@
     <button *ngIf="currentNavItem" class="back-button" type="button" (click)="onBack()">Back</button>
     <button>sort</button>
     <button>filter</button>
-    <input type="text" class="search-input" placeholder="Search..." />
+    <input type="text" class="search-input" placeholder="Search..." [(ngModel)]="searchQuery" (input)="onSearch()"/>
   </div>
   <div class="navbar-spacer"></div> <!-- this is key -->
   <div class="navbar-links">
