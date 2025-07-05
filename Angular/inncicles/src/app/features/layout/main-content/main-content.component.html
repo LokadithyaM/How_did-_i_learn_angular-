@@ -34,7 +34,7 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Languages</mat-label>
-        <mat-select formControlName="languages" multiple>
+        <mat-select formControlName="languages" multiple required>
           <mat-option *ngFor="let lang of availableLanguages" [value]="lang">
             {{ lang }}
           </mat-option>
@@ -43,7 +43,7 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Services</mat-label>
-        <mat-select formControlName="services" multiple>
+        <mat-select formControlName="services" multiple required>
           <mat-option *ngFor="let service of availableServices" [value]="service">
             {{ service }}
           </mat-option>
@@ -52,7 +52,7 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>KYC Documents</mat-label>
-        <mat-select formControlName="kycDocs" multiple (selectionChange)="onKycDocsChange($event.value)">
+        <mat-select formControlName="kycDocs" multiple (selectionChange)="onKycDocsChange($event.value)" required>
           <mat-option *ngFor="let doc of availableKycDocs" [value]="doc">
             {{ doc }}
           </mat-option>
