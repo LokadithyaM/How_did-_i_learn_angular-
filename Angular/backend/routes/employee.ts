@@ -12,6 +12,7 @@ router.post('/', async (req: Request, res: Response) => {
     await employee.save();
     res.status(201).json(employee);
   } catch (err) {
+  	console.log("Received data:", req.body);
     const errorMessage = err instanceof Error ? err.message : 'Unknown error';
     res.status(400).json({ error: errorMessage });
   }
@@ -27,16 +28,33 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-router.delete('/:id', async (req: Request, res: Response) => {
-    try{
-      const id = parseInt(req.params.id);
-      await Employee.findOneAndDelete({ id });
-      console.log('Employee deleted:', id);
-      res.status(200).json({ message: 'Employee deleted successfully' });
-    }catch (err) {
-      console.error('Error deleting employee:', err);
-      res.status(500).json({ error: 'Server error' });
+router.delete('/:identifier', async (req: Request, res: Response) => {
+  try {
+    const identifier = req.params.identifier;
+
+    let deletedEmployee;
+
+    // Check if identifier is a number (id)
+    const id = Number(identifier);
+    if (!isNaN(id)) {
+      // Delete by id
+      deletedEmployee = await Employee.findOneAndDelete({ id });
+    } else {
+      // Delete by fullName (exact match)
+      deletedEmployee = await Employee.findOneAndDelete({ fullName: identifier });
     }
+
+    if (deletedEmployee) {
+      console.log('Employee deleted:', deletedEmployee);
+      res.status(200).json({ message: 'Employee deleted successfully' });
+    } else {
+      res.status(404).json({ error: 'Employee not found' });
+    }
+
+  } catch (err) {
+    console.error('Error deleting employee:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 router.put('/:id', async (req: Request, res: Response) => {

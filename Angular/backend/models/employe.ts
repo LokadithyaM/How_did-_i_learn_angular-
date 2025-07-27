@@ -12,7 +12,7 @@ export interface IEmployee extends Document {
   vehicleType: 'Two Wheeler' | 'Four Wheeler' | 'None';
   kycDocs: string[];
   additionalDocs?: string[];
-  gender?: string;
+  gender: string;
   createdAt?: Date;
 }
 
