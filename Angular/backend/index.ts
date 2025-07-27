@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import employeeRoutes from './routes/employee'; // make sure this is a .ts file too
+import path from 'path';
 
 dotenv.config();
 
@@ -27,6 +28,8 @@ app.use('/routes/employee', employeeRoutes);
 app.get('/', (req: Request, res: Response) => {
   res.send('Employee Portal API is running');
 });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 const PORT: number = parseInt(process.env.PORT || '3000', 10);
 app.listen(PORT, () => {

@@ -10,6 +10,7 @@ export class CommunicationService {
   private employeesSubject = new BehaviorSubject<Employee[]>([]);
   employees$: Observable<Employee[]> = this.employeesSubject.asObservable();
   private fullEmployeeList: Employee[] = [];
+  // private formNext: String = '';
 
   searchQuery: string = '';
 

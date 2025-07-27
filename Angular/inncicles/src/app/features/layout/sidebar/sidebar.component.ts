@@ -14,6 +14,7 @@ import { Employee } from '../../../core/services/item.service'; // Adjust path i
 export class SidebarComponent implements OnInit, OnDestroy {
   items: Employee[] = [];
   currentNavItem: string | null = null;
+  length = 0;
 
   private subscriptions: Subscription = new Subscription();
 
@@ -32,14 +33,40 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.communicationService.navSelection$.subscribe((item) => {
         this.currentNavItem = item;
+        this.currentNavItem === 'next'? length = 5 : length = 0;
         console.log('Current Nav Item:', this.currentNavItem);
       })
     );
   }
 
+
+  steps = [
+    { key: 'AddEmployee', label: 'Form Fill-Up' },
+    { key: 'next', label: 'Additional Details' },
+    { key: 'review', label: 'Review & Submit' }
+  ];
+
+  getCurrentStepIndex(): number {
+    return this.steps.findIndex(s => s.key === this.currentNavItem);
+  }
+
+  isStepActive(index: number): boolean {
+    return index === this.getCurrentStepIndex();
+  }
+
+  isStepCompleted(index: number): boolean {
+    return index <= this.getCurrentStepIndex();
+  }
+
+
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
+
+    getFullPhotoUrl(path: string): string {
+    return path ? `http://localhost:3000/${path}` : 'assets/dream.svg';
+  }
+
 
   // method to select an employee from the sidebar
   selectEmployee(employee: Employee) {

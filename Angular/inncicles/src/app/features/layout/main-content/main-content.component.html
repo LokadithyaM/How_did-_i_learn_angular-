@@ -2,45 +2,23 @@
 <section class="main-content">
   <div [hidden]="currentNavItem !== 'AddEmployee'">
     <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form_container">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Full Name</mat-label>
-        <input matInput formControlName="fullName" required />
-      </mat-form-field>
+<div class="profile-photo-container">
+  <img
+    [src]="filePreviewUrls['profilePhoto'] || 'assets/dream.svg'"
+    alt="Profile Photo"
+    class="profile-photo"
+  />
+</div>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Mobile</mat-label>
-        <input matInput formControlName="mobile" required />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Organization</mat-label>
-        <mat-select formControlName="organization" required>
-          <mat-option *ngFor="let org of availableOrganizations" [value]="org">{{org}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Vehicle Type</mat-label>
-        <mat-select formControlName="vehicleType" required>
-          <mat-option *ngFor="let type of availableVehicleTypes" [value]="type">{{type}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+<input
+  type="file"
+  accept="image/*"
+  (change)="onProfilePhotoSelected($event, 'profilePhoto')"
+/>
 
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Languages</mat-label>
-        <mat-select formControlName="languages" multiple required>
-          <mat-option *ngFor="let lang of availableLanguages" [value]="lang">
-            {{ lang }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
+      <div class="line"></div>
+      <h2>Types of services*</h2>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Services</mat-label>
         <mat-select formControlName="services" multiple required>
@@ -50,6 +28,59 @@
         </mat-select>
       </mat-form-field>
 
+      <h2>Organization*</h2>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Organization</mat-label>
+        <mat-select formControlName="organization" required>
+          <mat-option *ngFor="let org of availableOrganizations" [value]="org">{{org}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h3>Full Name*</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="fullName" required />
+      </mat-form-field>
+
+      <h3>Languages*</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Languages</mat-label>
+        <mat-select formControlName="languages" multiple required>
+          <mat-option *ngFor="let lang of availableLanguages" [value]="lang">
+            {{ lang }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h3>Gender*</h3>
+      <mat-radio-group formControlName="gender" color="primary" class="full-width" required>
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+        <mat-radio-button value="other">Other</mat-radio-button>
+      </mat-radio-group>
+        
+
+      <h3>Mobile Number*</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Mobile</mat-label>
+        <input matInput formControlName="mobile" required />
+      </mat-form-field>
+      
+      <h3>Email</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+
+      <h3>Chose Vehicle type</h3>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Vehicle Type</mat-label>
+        <mat-select formControlName="vehicleType" required>
+          <mat-option *ngFor="let type of availableVehicleTypes" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <h3>KYC Documents*</h3>
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>KYC Documents</mat-label>
         <mat-select formControlName="kycDocs" multiple (selectionChange)="onKycDocsChange($event.value)" required>
@@ -59,41 +90,53 @@
         </mat-select>
       </mat-form-field>
 
+      
+
       <div *ngFor="let doc of selectedKycDocs">
         <label>{{ doc }} File:</label>
         <input type="file" (change)="onFileSelected($event, doc)" />
       </div>
 
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Additional Documents</mat-label>
-        <mat-select formControlName="additionalDocs" multiple>
-          <mat-option *ngFor="let doc of availableAdditionalDocs" [value]="doc">
-            {{ doc }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Profile Photo URL</mat-label>
-        <input matInput formControlName="profilePhoto" />
-      </mat-form-field>
-
-      <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
-        Submit
-      </button>
+      <div class="butter-chicken">
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+            Next
+          </button>
+      </div>
     </form>
   </div>
 
-  <div [hidden]="currentNavItem !== 'Logout'">Employees Sidebar Content</div>
+  <div [hidden]="currentNavItem !== 'next'">
+          <div class="butter-chicken">
+            <div>
+              Additonal documents
+            </div>
+            <div class="additional-docs">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Additional Documents</mat-label>
+                <mat-select formControlName="additionalDocs" multiple>
+                  <mat-option *ngFor="let doc of availableAdditionalDocs" [value]="doc">
+                    {{ doc }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+          <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+            Submit
+          </button>
+      </div>
+  </div>
 
   <div *ngIf="!currentNavItem">
       <div *ngIf="selectedEmployee" class="employee-card">
         <div class="employee-card-header">
               <div class="edit">Edit</div>
-              <div class="delete">Delete</div>
+              <div class="delete" onclick="deleteplease()">Delete</div>
         </div>
-    <img [src]="selectedEmployee.profilePhoto" alt="{{ selectedEmployee.fullName }}" class="profile-photo" />
+<div style="width:200px; height:200px; border-radius:50%; overflow:hidden; display:flex; align-items:center; justify-content:center; border:2px solid #495057;">
+  <img [src]="getFullPhotoUrl(selectedEmployee.profilePhoto)" alt="Profile" style="width:100%; height:100%; object-fit:cover; display:block;" />
+</div>
+
+      <div class="line"></div>
     <h2>{{ selectedEmployee.fullName }}</h2>
     <div class="field"><span class="label">Mobile:</span> {{ selectedEmployee.mobile }}</div>
     <div class="field"><span class="label">Email:</span> {{ selectedEmployee.email }}</div>

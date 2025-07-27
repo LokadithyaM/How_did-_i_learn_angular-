@@ -1,11 +1,24 @@
 <aside class="sidebar">
-  <div *ngIf="currentNavItem === 'AddEmployee'">Dashboard Sidebar Content</div>
-  <div *ngIf="currentNavItem === 'Logout'">Employees Sidebar Content</div>
+  <!-- <div *ngIf="currentNavItem === 'AddEmployee'">Dashboard Sidebar Content</div> -->
+  <div class="vertical-stepper" *ngIf="currentNavItem">
+    <div
+      class="step"
+      *ngFor="let step of steps; let i = index"
+      [class.active]="isStepActive(i)"
+      [class.completed]="isStepCompleted(i)"
+    >
+      <div class="circle">{{ i + 1 }}</div>
+      <div class="label">{{ step.label }}</div>
+      <div class="line" *ngIf="i < steps.length - 1"></div>
+    </div>
+</div>
+
+
 
   <div *ngIf="!currentNavItem" class="whatsapp">
     <div *ngFor="let item of items" class="item">
       <div class="item-icon" (click)="selectEmployee(item)">
-        <img [src]="item.profilePhoto" alt="{{ item.fullName }}" class="profile-photo" />
+        <img [src]="getFullPhotoUrl(item.profilePhoto) || 'assets/dream.svg'" alt="{{ item.fullName }}" class="profile-photo" />
         <div class="item-texts">
           <div class="item-name">{{ item.fullName }}</div>
           <div class="item-role">{{ item.mobile }}</div>

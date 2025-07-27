@@ -1,8 +1,83 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   ul {
     list-style: none;
     padding: 0;
   }
+
+  .vertical-stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-center;
+  justify-content: center;
+  margin-left: 100px;
+  margin-top: 200px;
+  position: relative;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 90px;
+  color: #999;
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #555;
+    z-index: 1;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .line {
+    position: absolute;
+    top: 30px;
+    left: 14px;
+    width: 2px;
+    height: 90px;
+    background-color: #ccc;
+    z-index: 0;
+  }
+
+  &.completed {
+    .circle {
+      background-color: #1976d2;
+      color: white;
+    }
+
+    .line {
+      background-color: #1976d2;
+    }
+
+    color: #1976d2;
+  }
+
+  &.active {
+    font-weight: bold;
+    color: #1976d2;
+
+    .circle {
+      border: 2px solid #1976d2;
+      background-color: white;
+      color: #1976d2;
+    }
+  }
+}
+
 
   li {
     margin-bottom: 1rem;
@@ -16,6 +91,7 @@
       }
     }
   }
+  
 
   .whatsapp {
     .item {
@@ -36,12 +112,16 @@
         align-items: center;
         flex-direction: row;
         margin-right: 1rem;
+        width: 100%;
+        flex-shrink: 0;
+          height: 60px;
 
         .profile-photo {
           width: 48px;
           height: 48px;
           border-radius: 50%;
           object-fit: cover;
+          flex-shrink: 0;
           border: 2px solid #007bff;
           margin-right: 1rem;
         }
@@ -50,6 +130,7 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          width: 100%;
 
           .item-name {
             font-weight: 600;
@@ -60,6 +141,7 @@
 
           .item-role {
             font-size: 0.85rem;
+            width: 100%;
             color: #6c757d;
           }
         }

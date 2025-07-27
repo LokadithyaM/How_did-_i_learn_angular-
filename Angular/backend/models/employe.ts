@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document, model } from 'mongoose';
 
 export interface IEmployee extends Document {
+  id: number;
   fullName: string;
   organization: 'OrgA' | 'OrgB' | 'OrgC';
   languages: string[];
@@ -11,10 +12,16 @@ export interface IEmployee extends Document {
   vehicleType: 'Two Wheeler' | 'Four Wheeler' | 'None';
   kycDocs: string[];
   additionalDocs?: string[];
+  gender?: string;
   createdAt?: Date;
 }
 
 const employeeSchema: Schema = new Schema<IEmployee>({
+  id:{
+    type: Number,
+    required: true,
+    unique: true,
+  },
   fullName: {
     type: String,
     required: true,
@@ -58,6 +65,10 @@ const employeeSchema: Schema = new Schema<IEmployee>({
   additionalDocs: {
     type: [String],
     default: [],
+  },
+  gender: {
+    type: String,
+    required: true,
   },
   createdAt: {
     type: Date,
