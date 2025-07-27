@@ -83,3 +83,10 @@ done with mongodb adding and retriving displayal now as things stand next in lin
 - next in line are filters for added people
 - once these above four are done i will be switching gears to ui related aspects which is more of a rote work indeed.
 dynamicity done.
+
+# DAY 12
+most of the updates are done remaining are 
+- bug in the side bar
+- bug in the additional docs area
+functionality wise i am done ui is also looking good enough one more point to cover is the
+- http client right now i am direclty calling without angualrs http capsulation so fixing that should do!
