@@ -36,7 +36,7 @@ export class MainContentComponent implements OnInit, OnDestroy {
   currentNavItem: string | null = '';
   selectedEmployee: Employee | null = null;
   private subscription!: Subscription;
-  formSnapshot: any = {};
+  formSnapshot: Employee | null = null;
 
 
   employeeForm: FormGroup;
@@ -127,18 +127,34 @@ async submitEdit() {
 
     // 2. Upload KYC & Additional docs files
     const docsFormData = new FormData();
+// KYC
+// KYC: Upload new files
+for (const docType of this.selectedKycDocs) {
+  if (this.kycDocFiles[docType]) {
+    docsFormData.append('kycDocs', this.kycDocFiles[docType] as File);
+  }
+}
 
-    for (const docType of this.selectedKycDocs) {
-      if (this.uploadedFiles[docType]) {
-        docsFormData.append('kycDocs', this.uploadedFiles[docType] as File);
-      }
-    }
+// KYC: Append previously uploaded file paths
+if (this.formSnapshot && this.formSnapshot.kycDocs?.length) {
+  for (const existingPath of this.formSnapshot.kycDocs) {
+    docsFormData.append('existingKycDocs', existingPath);
+  }
+}
 
-    for (const docType of this.selectedAdditionalDocs) {
-      if (this.uploadedFiles[docType]) {
-        docsFormData.append('additionalDocs', this.uploadedFiles[docType] as File);
-      }
-    }
+// Additional: Upload new files
+for (const docType of this.selectedAdditionalDocs) {
+  if (this.additionalDocFiles[docType]) {
+    docsFormData.append('additionalDocs', this.additionalDocFiles[docType] as File);
+  }
+}
+
+// Additional: Append previously uploaded file paths
+if (this.formSnapshot && this.formSnapshot.additionalDocs?.length) {
+  for (const existingPath of this.formSnapshot.additionalDocs) {
+    docsFormData.append('existingAdditionalDocs', existingPath);
+  }
+}
 
     let uploadedKycPaths = this.selectedEmployee.kycDocs || [];
     let uploadedAdditionalPaths = this.selectedEmployee.additionalDocs || [];
@@ -184,9 +200,14 @@ async submitEdit() {
 
     // 5. Update local state and reset UI
     this.selectedEmployee = updatedEmployee;
-    this.communicationService.addEmployeeToSubject(updatedEmployee);
+    this.communicationService.updateEmployeeInSubject(updatedEmployee);
     this.currentNavItem = null;
     this.communicationService.selectNavItem('');
+    this.selectedEmployee = null;
+    this.employeeForm.reset();
+    this.uploadedFiles = {};
+    this.uploadProfile = {};
+
 
   } catch (error) {
     console.error('Error updating employee:', error);
@@ -210,8 +231,10 @@ noEdit(){
   this.communicationService.selectNavItem('EditEmployee');
 }
 
-next(){
-  this.formSnapshot.additionalDocs = this.additionalDocFiles;
+  next(){
+  if (this.formSnapshot) {
+    this.formSnapshot.additionalDocs = Object.keys(this.additionalDocFiles);
+  }
   this.currentNavItem = 'review';
   this.communicationService.selectNavItem('review');
 }
@@ -228,14 +251,7 @@ onSubmit() {
   }
 }
 
-   additionalDocFiles: { [key: string]: File | null } = {};
-
-  onAdditionalDocFileSelected(event: Event, doc: string) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.additionalDocFiles[doc] = input.files[0];
-    }
-  }
+  // Removed duplicate onAdditionalDocFileSelected to resolve duplicate implementation error.
 
 
 
@@ -269,19 +285,20 @@ async finalSubmit() {
       uploadedPhotoPath = profilePhotoData.path;
     }
 
-      // Add KYC docs
-      for (const docType of this.selectedKycDocs) {
-        if (this.uploadedFiles[docType]) {
-          formData.append('kycDocs', this.uploadedFiles[docType] as File);
-        }
-      }
+// KYC
+for (const docType of this.selectedKycDocs) {
+  if (this.kycDocFiles[docType]) {
+    formData.append('kycDocs', this.kycDocFiles[docType] as File);
+  }
+}
 
-      // Add any additional docs
-      for (const key in this.uploadedFiles) {
-        if (!this.selectedKycDocs.includes(key) && key !== 'profilePhoto') {
-          formData.append('additionalDocs', this.uploadedFiles[key] as File);
-        }
-      }
+// Additional
+for (const docType of this.selectedAdditionalDocs) {
+  if (this.additionalDocFiles[docType]) {
+    formData.append('additionalDocs', this.additionalDocFiles[docType] as File);
+  }
+}
+
 
       // 3. Upload files to the backend
       const fileUploadRes = await fetch("http://localhost:3000/routes/employee/upload/docs", {
@@ -330,8 +347,11 @@ async finalSubmit() {
       this.currentNavItem = null;
       this.selectedEmployee = null;
 
+   
+
       this.communicationService.addEmployeeToSubject(createdEmployee);
       this.communicationService.selectNavItem('');
+      this.onBack();
 
     } catch (err) {
       console.error("Submission error:", err);
@@ -395,23 +415,22 @@ if (identifier !== undefined) {
 
 
 
-
-  getFullPhotoUrl(path: string): string {
-    return path ? `http://localhost:3000/${path}` : 'assets/dream.svg';
-  }
-
+getFullPhotoUrl(path: string): string {
+  if (!path) return 'assets/dream.svg';
+  return `http://localhost:3000/${encodeURI(path.trim())}`;
+}
 
 
 
   onBack(){
-    if(this.currentNavItem === 'preview') {
+    if(this.currentNavItem === 'review') {
       this.currentNavItem = 'next';
       this.communicationService.selectNavItem('next');
       return;
     }
     if(this.currentNavItem === 'next') {
-      this.currentNavItem = 'form';
-      this.communicationService.selectNavItem('form');
+      this.currentNavItem = 'AddEmployee';
+      this.communicationService.selectNavItem('AddEmployee');
       return;
     }
     this.currentNavItem = null; // Reset the current nav item
@@ -419,26 +438,30 @@ if (identifier !== undefined) {
   }
 
   selectedKycDocs: string[] = [];
+  kycDocFiles: { [docType: string]: File | null } = {};
+  additionalDocFiles: { [docType: string]: File | null } = {};
 
-  onKycDocsChange(selectedDocs: string[]) {
-    this.selectedKycDocs = selectedDocs;
-    
-    // Clean up files for deselected docs
-    Object.keys(this.uploadedFiles).forEach(doc => {
-      if (!selectedDocs.includes(doc)) {
-        delete this.uploadedFiles[doc];
-      }
-    });
-  }
 
-  onAdditionalDocsChange(selectedDocs: string[]) {
-    // Clean up files for deselected docs
-    Object.keys(this.uploadedFiles).forEach(doc => {
-      if (!selectedDocs.includes(doc) && doc !== 'profilePhoto') {
-        delete this.uploadedFiles[doc];
-      }
-    });
-  }
+onKycDocsChange(selectedDocs: string[]) {
+  this.selectedKycDocs = selectedDocs;
+
+  Object.keys(this.kycDocFiles).forEach(doc => {
+    if (!selectedDocs.includes(doc)) {
+      delete this.kycDocFiles[doc];
+    }
+  });
+}
+
+
+onAdditionalDocsChange(selectedDocs: string[]) {
+  this.selectedAdditionalDocs = selectedDocs;
+
+  Object.keys(this.additionalDocFiles).forEach(doc => {
+    if (!selectedDocs.includes(doc)) {
+      delete this.additionalDocFiles[doc];
+    }
+  });
+}
 
   onProfilePhotoSelected(event: Event, docType: string): void {
   const input = event.target as HTMLInputElement;
@@ -457,14 +480,13 @@ if (identifier !== undefined) {
 
 
 
-onFileSelected(event: Event, docType: string) {
+onKycDocFileSelected(event: Event, docType: string) {
   const input = event.target as HTMLInputElement;
   if (input.files && input.files.length > 0) {
     const file = input.files[0];
-    this.uploadedFiles[docType] = file;
-    console.log(`File selected for ${docType}:`, this.uploadedFiles[docType]);
+    this.kycDocFiles[docType] = file;
+    console.log(`KYC File selected for ${docType}:`, file);
 
-    // If image, create preview URL
     if (this.isImage(file)) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -472,11 +494,30 @@ onFileSelected(event: Event, docType: string) {
       };
       reader.readAsDataURL(file);
     } else {
-      // Optional: clear preview if not an image
       delete this.filePreviewUrls[docType];
     }
   }
 }
+
+onAdditionalDocFileSelected(event: Event, docType: string) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    const file = input.files[0];
+    this.additionalDocFiles[docType] = file;
+    console.log(`Additional File selected for ${docType}:`, file);
+
+    if (this.isImage(file)) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.filePreviewUrls[docType] = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      delete this.filePreviewUrls[docType];
+    }
+  }
+}
+
 
 loadEmployeeForEdit(employee: Employee) {
   if (!employee) return;

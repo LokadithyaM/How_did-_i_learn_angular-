@@ -94,7 +94,7 @@
 
       <div *ngFor="let doc of selectedKycDocs">
         <label>{{ doc }} File:</label>
-        <input type="file" (change)="onFileSelected($event, doc)" />
+        <input type="file" (change)="onKycDocFileSelected($event, doc)" />
       </div>
 
       <div class="butter-chicken">
@@ -111,7 +111,6 @@
       <h1>Additional documents</h1>
     </div>
 
-<h3>Additional Documents</h3>
 <mat-form-field appearance="outline" class="full-width">
   <mat-label>Additional Documents</mat-label>
   <mat-select
@@ -180,12 +179,14 @@
 
   </div>
 
-  <div class="field">
-    <span class="label">Additional Documents:</span>
-    <ul>
-      <li *ngFor="let doc of selectedEmployee.additionalDocs">{{ doc }}</li>
-    </ul>
+<div class="field">
+  <span class="label">Additional Documents:</span>
+  <div *ngFor="let doc of selectedEmployee.additionalDocs">
+    <a [href]="getFullPhotoUrl(doc)" target="_blank" rel="noopener noreferrer">
+      📄 {{ doc.split('/').pop() }}
+    </a>
   </div>
+</div>
 
   <div class="section-title">Service Details</div>
   <div class="field"><span class="label">Organization:</span> {{ selectedEmployee.organization }}</div>
@@ -199,7 +200,7 @@
 </div>
 
 <!-- Preview Section -->
-<div *ngIf="currentNavItem === 'review'" class="employee-card">
+<div *ngIf="currentNavItem === 'review' && formSnapshot" class="employee-card">
   <div class="employee-card-header">
     <div class="edit" (click)="currentNavItem = 'AddEmployee'">Edit</div>
     <div class="delete" (click)="currentNavItem = 'AddEmployee'">Cancel</div>
@@ -240,12 +241,14 @@
     </div>
   </div>
 
-  <div class="field">
-    <span class="label">Additional Documents:</span>
-    <ul>
-      <li *ngFor="let doc of formSnapshot.additionalDocs">{{ doc }}</li>
-    </ul>
+<div class="field">
+  <span class="label">Additional Documents:</span>
+  <div *ngFor="let doc of formSnapshot.additionalDocs">
+    <a [href]="getFullPhotoUrl(doc)" target="_blank" rel="noopener noreferrer">
+      📄 {{ doc.split('/').pop() }}
+    </a>
   </div>
+</div>
 
   <div class="section-title">Service Details</div>
   <div class="field"><span class="label">Organization:</span> {{ formSnapshot.organization }}</div>
@@ -375,7 +378,7 @@
 
     <div *ngFor="let doc of selectedKycDocs" class="file-input-container">
       <label>{{ doc }} File:</label>
-      <input type="file" (change)="onFileSelected($event, doc)" />
+      <input type="file" (change)="onKycDocFileSelected($event, doc)" />
     </div>
 
     <h3>Additional Documents</h3>
