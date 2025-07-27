@@ -7,6 +7,7 @@ export interface Employee {
   fullName: string;
   mobile: string;
   email: string;
+  gender: string;
   organization: string;
   vehicleType: string;
   languages: string[];

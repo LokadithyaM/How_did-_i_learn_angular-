@@ -39,6 +39,14 @@ export class CommunicationService {
     });
   }
 
+  removeEmployeeFromSubject(employeeId: number): void {
+    this.fullEmployeeList = this.fullEmployeeList.filter(
+      (employee) => employee.id !== employeeId
+    );
+    const current = this.employeesSubject.getValue();
+    this.employeesSubject.next(current.filter((emp) => emp.id !== employeeId));
+  }
+
   addEmployeeToSubject(newEmployee: Employee): void {
      this.fullEmployeeList.push(newEmployee);
     const current = this.employeesSubject.getValue();
