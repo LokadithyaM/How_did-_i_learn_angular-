@@ -90,3 +90,8 @@ most of the updates are done remaining are
 - bug in the additional docs area
 functionality wise i am done ui is also looking good enough one more point to cover is the
 - http client right now i am direclty calling without angualrs http capsulation so fixing that should do!
+
+# DAY 13
+bugs fixed ! 
+http wrapper not yet apart from that everything is done including sort filters .... 
+getting a lot used to looking at the code keywords are still latin though..
